@@ -1,0 +1,126 @@
+/* reset css */
+html, body, h1, h2, h3, h4, h5, h6, p, ol, ul, li, pre, code, address, form, fieldset, blockquote {
+ padding: 0;
+ margin: 0;
+ font-size: 100%;
+ font-weight: normal;
+}
+table { border-collapse: collapse; border-spacing: 0; }
+td, th, caption { font-weight: normal; text-align: left; }
+img, fieldset { border: 0; }
+ol { list-style: decimal; }
+ul { list-style:none; }
+a{text-decoration: none;}
+q:before, q:after { content:''; }
+*:focus {outline: none;}
+/* end reset */
+/*----------------------------Font name-----------------------------*/
+	/*font: px georgia, serif;
+	font: px "times new roman", times, serif;
+	font: px arial, helvetica, sans-serif;
+	font: px tahoma, geneva, sans-serif;
+	font: px "trebuchet ms", helvetica, sans-serif;
+	font: px verdana, geneva, sans-serif;
+	font: px "ms serif", "new york", serif;
+	font: px "arial black", gadget, sans-serif;
+	font: px "lucida sans", unicode, "lucida grande", sans-serif;*/
+@font-face {
+	
+}
+/*---------------------------start---------------------------------*/
+html{
+ height:100%;
+ background:#fff;
+}
+body{
+ font:10px/10px Arial, Helvetica, sans-serif;
+ min-height:100%;
+ min-width: 1200px;
+ width: 1200px;
+ margin: 0 auto;
+ color:#000;
+}
+/*:before,
+:after*/
+/*:before,
+:after*/
+/*{
+	display: block;
+	clear: both;
+	content: '';
+}*/
+
+
+
+/*-----------------------------MAIN-------------------------------*/
+main{
+	width: 100%;
+	margin: 0 auto;
+}
+main .container{
+	margin: 20px auto;
+	display:flex;
+	flex-direction: column;
+}
+.start{
+	width: 92%;
+	min-height: 100%;
+	padding: 4%;
+	margin: 10px 0;
+	border:1px solid black;
+	display:flex;
+	align-items: center;
+  	justify-content: center;
+}
+.btn{
+	padding: 10px;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+.btn:hover{
+	background-color: #ccc;
+}
+.field{
+	width: 96%;
+    min-height: 100%;
+    padding: 2%;
+	border: 1px solid black;
+}
+#table{
+	width: 100%;
+	font-size: 20px;
+	line-height: 20px;
+	margin: 20px 0;
+}
+#table td{
+	padding: 5px;
+	border:1px solid black;
+	text-align: center;
+}
+#table td:hover{
+	cursor: pointer;
+}
+#table .hide{
+	opacity: 0;
+}
+#table .show{
+	opacity: 1;
+}
+#table .gray{
+	background-color: #ccc;
+}
+
+.result{
+	width: 96%;
+    min-height: 100%;
+    padding: 2%;
+	border: 1px solid black;
+	display:flex;
+	align-items: center;
+  	justify-content: center;
+}
+.result span{
+	font-size: 24px;
+	line-height: 24px;
+}
