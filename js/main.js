@@ -61,7 +61,7 @@
 		for(let i = 0, count = 0; i < height; i++){
 			table = table + "<tr>";
 			for(let j = 0; j < width; j++){
-				table = table + `<td class="hide">${tempArray[count]}</td>`;
+				table = table + `<td ><div class="hide">${tempArray[count]}</div></td>`;
 				count++;
 			};
 			table = table + "</tr>";
@@ -93,7 +93,8 @@
 
 		div.addEventListener('click', (e)=>{
 			let target = e.target;
-			if(target.tagName === "TD"){
+			
+			if(target.tagName === "DIV"){
 				if(!target.hasOwnProperty('opened')){
 					target.opened = false;
 				};
@@ -126,9 +127,11 @@
 						if(quantityPairs - 1 > coincidence){
 							coincidence++;
 						}else{
-							fieldDiv.style.display = "none";
-							resultDiv.style.display = "flex";
-						}
+							setTimeout(()=>{
+								fieldDiv.style.display = "none";
+								resultDiv.style.display = "flex";
+							},700);
+						};
 					};
 				};
 

@@ -14,19 +14,7 @@ a{text-decoration: none;}
 q:before, q:after { content:''; }
 *:focus {outline: none;}
 /* end reset */
-/*----------------------------Font name-----------------------------*/
-	/*font: px georgia, serif;
-	font: px "times new roman", times, serif;
-	font: px arial, helvetica, sans-serif;
-	font: px tahoma, geneva, sans-serif;
-	font: px "trebuchet ms", helvetica, sans-serif;
-	font: px verdana, geneva, sans-serif;
-	font: px "ms serif", "new york", serif;
-	font: px "arial black", gadget, sans-serif;
-	font: px "lucida sans", unicode, "lucida grande", sans-serif;*/
-@font-face {
-	
-}
+
 /*---------------------------start---------------------------------*/
 html{
  height:100%;
@@ -40,17 +28,6 @@ body{
  margin: 0 auto;
  color:#000;
 }
-/*:before,
-:after*/
-/*:before,
-:after*/
-/*{
-	display: block;
-	clear: both;
-	content: '';
-}*/
-
-
 
 /*-----------------------------MAIN-------------------------------*/
 main{
@@ -92,6 +69,8 @@ main .container{
 	font-size: 20px;
 	line-height: 20px;
 	margin: 20px 0;
+	border-collapse: separate;
+	border-spacing: 7px 5px;
 }
 #table td{
 	padding: 5px;
