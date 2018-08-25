@@ -12,17 +12,35 @@
 		tempArray = [],
 		pair = 0;
 
-	let runPromise1 = ()=>{
-		let promise1 = XMLHttp.send(url1);
-		promise1.then((result)=>{
-			sizeField = result;
-			let obj = JSON.parse(sizeField);
-			widthArray = obj.width;
-			heightArray = obj.height;
-			if((heightArray*widthArray)%2 !== 0){
-				runPromise1();
-			}
-		});
+	// let runPromise1 = ()=>{
+	// 	let promise1 = XMLHttp.send(url1);
+	// 	promise1.then((result)=>{
+	// 		sizeField = result;
+	// 		console.log('runPromise1()   result =', result)
+	// 		let obj = JSON.parse(sizeField);
+	// 		widthArray = obj.width;
+	// 		heightArray = obj.height;
+	// 		if((heightArray*widthArray)%2 !== 0){
+	// 			runPromise1();
+	// 		}
+	// 	});
+	// };
+
+	let runFetch = ()=>{
+		fetch(url1, {method:'GET'})
+		.then(response => {
+			response.json().then(function(data){
+				console.log(data); 
+				widthArray = data.width;
+				heightArray = data.height;
+				console.log((heightArray*widthArray)%2 !== 0);
+				console.log(heightArray*widthArray);
+				console.log(heightArray);
+				console.log(widthArray);
+				if((heightArray*widthArray)%2 !== 0)runFetch();
+			})
+		})
+		.catch(error => console.error('Error:', error));
 	};
 
 	const setPreviousSettings = ()=>{
@@ -141,8 +159,14 @@
 		});
 	};
 
-	runPromise1();
+	runFetch();
 	setPreviousSettings();
 	game(mainTag);
 
+	//let a = fetchModule.send(url1)
+
+	//console.log('fetch.data ',a, typeof a);
+	//console.log(typeof a);
+
 })();
+

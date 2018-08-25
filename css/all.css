@@ -73,12 +73,14 @@ main .container{
 	border-spacing: 7px 5px;
 }
 #table td{
-	padding: 5px;
 	border:1px solid black;
 	text-align: center;
 }
 #table td:hover{
 	cursor: pointer;
+}
+#table .card{
+	padding: 5px;
 }
 #table .hide{
 	opacity: 0;
