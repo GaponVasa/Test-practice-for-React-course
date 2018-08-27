@@ -6,17 +6,19 @@ const startData = {url : 'https://ec-test-react.herokuapp.com/api/v1/items',
 		resultDiv :document.querySelector('.result')};
 
 class App {
-	constructor(obj){
-		this.url = obj.url,
-		this.mainTag = obj.mainTag,
-		this.startDiv = obj.startDiv,
-		this.fieldDiv = obj.fieldDiv,
-		this.resultDiv = obj.resultDiv,
+	constructor(objstartData){
+		this.url = objstartData.url,
+		this.mainTag = objstartData.mainTag,
+		this.startDiv = objstartData.startDiv,
+		this.fieldDiv = objstartData.fieldDiv,
+		this.resultDiv = objstartData.resultDiv,
 		this.widthTable = 2,
 		this.heightTable = 3,
 		this.tempArray = [],
 		this.state = {
 			showFirstCard: false,
+			showSecondCard: false,
+			linkToFirstCard:null,
 			allPair:0
 		}
 	};
@@ -26,13 +28,8 @@ class App {
 		fetch(this.url, {method:'GET'})
 			.then(response => {
 				response.json().then(function(data){
-					console.log('data', data); 
 					that.widthTable = parseInt(data.width);
 					that.heightTable = parseInt(data.height);
-					console.log('(heightTable*widthTable)%2 !== 0', (that.heightTable*that.widthTable)%2 !== 0);
-					console.log('heightTable*widthTable', that.heightTable*that.widthTable);
-					console.log('heightTable', that.heightTable);
-					console.log('widthTable', that.widthTable);
 					if((that.heightTable*that.widthTable)%2 !== 0)that.runFetch();
 				})
 			})
@@ -44,9 +41,16 @@ class App {
 		this.resultDiv.style.display = "none";
 	};
 
+	hideShowCard(targetElement){
+		targetElement.classList.toggle("hide");
+		targetElement.classList.toggle("show");
+	};
+
 	generateRandomArr(arr, sum){
 		let firstHalfCollection = new Set;
 		let secondHalfCollection = new Set;
+		let halfSum = sum/2;
+		this.state.allPair = halfSum;
 		function createHalfCollection(collection, size){
 			let randomDigit;
 			while(collection.size < size ){
@@ -55,8 +59,8 @@ class App {
 			};
 		};
 
-		createHalfCollection(firstHalfCollection, sum/2);
-		createHalfCollection(secondHalfCollection, sum/2);
+		createHalfCollection(firstHalfCollection, halfSum);
+		createHalfCollection(secondHalfCollection, halfSum);
 		let iterator1 = firstHalfCollection.values();
 		let iterator2 = secondHalfCollection.values();
 		for(let i = 0; i < sum/2; i++){
@@ -71,35 +75,78 @@ class App {
 		let tableRows = "";
 		let tableData = "";
 		let tempArray = this.tempArray;
-		//tempArray.length = sum;
 		tempArray = this.generateRandomArr(tempArray, sum);
 		for(let i = 0, count = 0; i < height; i++){
 			for(let j = 0; j < width; j++){
-				tableData = tableData + `<td ><div class="hide card">${tempArray[count]}</div></td>`;
+				tableData = tableData + `<td ><div class="card hide">${tempArray[count]}</div></td>`;
 				count++;
 			};
-			tableRows = tableRows + `<tr>${tableData}</tr>`;
+			tableRows += `<tr>${tableData}</tr>`;
 			tableData = "";
 		};
 		document.getElementById("table").innerHTML = tableRows;
 	};
 
+	stopGame(){
+		this.fieldDiv.style.display = "none";
+		this.resultDiv.style.display = "flex";
+	}
+
+	handlingClicOnCard(targetElement){
+		let {showFirstCard, showSecondCard, linkToFirstCard}  = this.state;
+		let firstDigit, secondDigit; 
+
+		if(showFirstCard === false){
+			this.state.showFirstCard = true;
+			this.state.linkToFirstCard = targetElement;
+			this.hideShowCard(targetElement);
+		}else if(showFirstCard === true && showSecondCard === false){
+			firstDigit = parseInt(linkToFirstCard.innerHTML);
+			secondDigit = parseInt(targetElement.innerHTML);
+			this.state.showSecondCard = true;
+			this.hideShowCard(targetElement);
+			if(firstDigit === secondDigit){
+				
+				setTimeout(function(){
+					targetElement.classList.remove("hide", "show");
+					linkToFirstCard.classList.remove("hide", "show");
+					targetElement.classList.add("gray");
+					linkToFirstCard.classList.add("gray");
+					this.state.showFirstCard = false;
+					this.state.showSecondCard = false;
+					this.state.allPair--;
+					if(this.state.allPair === 0)this.stopGame();
+				}.bind(this),500);
+			}else{
+
+				setTimeout(function(){
+					this.hideShowCard(targetElement);
+					this.hideShowCard(linkToFirstCard);
+					this.state.showFirstCard = false;
+					this.state.showSecondCard = false;
+				}.bind(this),1000);
+			}
+		}
+	}
+
 	handlingEventClick(tagLink){
+		let {showSecondCard} = this.state;
 		tagLink.addEventListener('click', (e)=>{
 			let target = e.target;
-			if(target.classList.contains("btn")){
+			let existBtnClass = target.classList.contains("btn");
+			let existCardClass = target.classList.contains("card");
+			let existHideClass = target.classList.contains("hide");
+			if(existBtnClass){
 				this.startDiv.style.display = "none";
 				this.generateTable(this.widthTable, this.heightTable);
 				this.fieldDiv.style.display = "block";
-			}else if(target.classList.contains("card")){
-				console.log(target)
-			}	
+			}else if(existCardClass && existHideClass && !showSecondCard){
+				this.handlingClicOnCard(target);
+			};
 		});
 	};
 
-
 	start(){
-		//console.log(this.url);
 		this.runFetch();
 		this.setPreviousSettings();
 		this.handlingEventClick(this.mainTag);
