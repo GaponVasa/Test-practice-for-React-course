@@ -1,70 +1,109 @@
 /* reset css */
-html, body, h1, h2, h3, h4, h5, h6, p, ol, ul, li, pre, code, address, form, fieldset, blockquote {
- padding: 0;
- margin: 0;
- font-size: 100%;
- font-weight: normal;
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul,
+li,
+pre,
+code,
+address,
+form,
+fieldset,
+blockquote {
+	padding: 0;
+	margin: 0;
+	font-size: 100%;
+	font-weight: normal;
 }
-table { border-collapse: collapse; border-spacing: 0; }
-td, th, caption { font-weight: normal; text-align: left; }
-img, fieldset { border: 0; }
-ol { list-style: decimal; }
-ul { list-style:none; }
-a{text-decoration: none;}
-q:before, q:after { content:''; }
-*:focus {outline: none;}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+td,
+th,
+caption {
+	font-weight: normal;
+	text-align: left;
+}
+img,
+fieldset {
+	border: 0;
+}
+ol {
+	list-style: decimal;
+}
+ul {
+	list-style: none;
+}
+a {
+	text-decoration: none;
+}
+q:before,
+q:after {
+	content: "";
+}
+*:focus {
+	outline: none;
+}
 /* end reset */
 
 /*---------------------------start---------------------------------*/
-html{
- height:100%;
- background:#fff;
+html {
+	height: 100%;
+	background: #fff;
 }
-body{
- font:10px/10px Arial, Helvetica, sans-serif;
- min-height:100%;
- min-width: 1200px;
- width: 1200px;
- margin: 0 auto;
- color:#000;
+body {
+	font: 10px/10px Arial, Helvetica, sans-serif;
+	min-height: 100%;
+	min-width: 1200px;
+	width: 1200px;
+	margin: 0 auto;
+	color: #000;
 }
 
 /*-----------------------------MAIN-------------------------------*/
-main{
+main {
 	width: 100%;
 	margin: 0 auto;
 }
-main .container{
+main .container {
 	margin: 20px auto;
-	display:flex;
+	display: flex;
 	flex-direction: column;
 }
-.start{
+.start {
 	width: 92%;
 	min-height: 100%;
 	padding: 4%;
 	margin: 10px 0;
-	border:1px solid black;
-	display:flex;
+	border: 1px solid black;
+	display: flex;
 	align-items: center;
-  	justify-content: center;
+	justify-content: center;
 }
-.btn{
+.btn {
 	padding: 10px;
 	border-radius: 3px;
 	cursor: pointer;
 }
 
-.btn:hover{
+.btn:hover {
 	background-color: #ccc;
 }
-.field{
+.field {
 	width: 96%;
-    min-height: 100%;
-    padding: 2%;
+	min-height: 100%;
+	padding: 2%;
 	border: 1px solid black;
 }
-#table{
+#table {
 	width: 100%;
 	font-size: 20px;
 	line-height: 20px;
@@ -72,36 +111,36 @@ main .container{
 	border-collapse: separate;
 	border-spacing: 7px 5px;
 }
-#table td{
-	border:1px solid black;
+#table td {
+	border: 1px solid black;
 	text-align: center;
 }
-#table td:hover{
+#table td:hover {
 	cursor: pointer;
 }
-#table .card{
+#table .card {
 	padding: 5px;
 }
-#table .hide{
+#table .hide {
 	opacity: 0;
 }
-#table .show{
+#table .show {
 	opacity: 1;
 }
-#table .gray{
+#table .gray {
 	background-color: #ccc;
 }
 
-.result{
+.result {
 	width: 96%;
-    min-height: 100%;
-    padding: 2%;
+	min-height: 100%;
+	padding: 2%;
 	border: 1px solid black;
-	display:flex;
+	display: flex;
 	align-items: center;
-  	justify-content: center;
+	justify-content: center;
 }
-.result span{
+.result span {
 	font-size: 24px;
 	line-height: 24px;
 }
